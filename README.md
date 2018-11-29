@@ -1,3 +1,4 @@
+![](/Destini/Images.xcassets/AppIcon.appiconset/Icon-40@2x.png)
 #  Destini
 
 ## Goal
