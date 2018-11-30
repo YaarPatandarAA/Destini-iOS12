@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  Destini
 //
-//  Created by Philipp Muellauer on 01/09/2015.
-//  Copyright (c) 2015 London App Brewery. All rights reserved.
+//  Created by Amarjit Singh on 29/11/2018.
+//  Copyright (c) 2018 London App Brewery. All rights reserved.
 //
 
 import UIKit
@@ -35,7 +35,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var storyTextView: UILabel!
     
     // TODO Step 5: Initialise instance variables here
-    
+    var storyNum = 1
     
     
     
@@ -44,6 +44,9 @@ class ViewController: UIViewController {
         
         
         // TODO Step 3: Set the text for the storyTextView, topButton, bottomButton, and to T1_Story, T1_Ans1, and T1_Ans2
+        storyTextView.text = story1
+        topButton.setTitle(answer1a, for: .normal)
+        bottomButton.setTitle(answer1b, for: .normal)
         
     }
 
@@ -52,13 +55,58 @@ class ViewController: UIViewController {
     @IBAction func buttonPressed(_ sender: UIButton) {
     
         // TODO Step 4: Write an IF-Statement to update the views
+        updateStory(buttonPressed: sender.tag)
                 
         // TODO Step 6: Modify the IF-Statement to complete the story
         
     
     }
     
-
+    func updateStory(buttonPressed: Int){
+        switch storyNum{
+            case 1: if(buttonPressed==1){
+                        updateUI(whichStory: story3, whichBtn1: answer3a, whichBtn2: answer3b)
+                        storyNum=3
+                    }
+                    else if(buttonPressed==2){
+                        updateUI(whichStory: story2, whichBtn1: answer2a, whichBtn2: answer2b)
+                        storyNum=2
+                    }
+            case 2: if(buttonPressed==1){
+                        updateUI(whichStory: story3, whichBtn1: answer3a, whichBtn2: answer3b)
+                        storyNum=3
+                    }
+                    else if(buttonPressed==2){
+                        updateUI(whichStory: story4, whichBtn1: "Story Over, Restart?", whichBtn2: "")
+                        storyNum=4
+                        bottomButton.isHidden = true
+                    }
+            case 3: if(buttonPressed==1){
+                        updateUI(whichStory: story6, whichBtn1: "Story Over, Restart?", whichBtn2: "")
+                        storyNum=6
+                        bottomButton.isHidden = true
+                    }
+                    else if(buttonPressed==2){
+                        updateUI(whichStory: story5, whichBtn1: "Story Over, Restart?", whichBtn2: "")
+                        storyNum=5
+                        bottomButton.isHidden = true
+                    }
+            case 4: updateUI(whichStory: story1, whichBtn1: answer1a, whichBtn2: answer1b)
+            case 5: updateUI(whichStory: story1, whichBtn1: answer1a, whichBtn2: answer1b)
+            case 6: updateUI(whichStory: story1, whichBtn1: answer1a, whichBtn2: answer1b)
+            default: print("Error")
+        }
+    }
+    
+    func updateUI(whichStory: String, whichBtn1: String, whichBtn2: String){
+        if(whichStory==story1){
+            bottomButton.isHidden=false
+            storyNum=1
+        }
+        storyTextView.text = whichStory
+        topButton.setTitle(whichBtn1, for: .normal)
+        bottomButton.setTitle(whichBtn2, for: .normal)
+    }
 
 
 }
